@@ -1,0 +1,13 @@
+const {createRecord,getRecords,deleteRecord,updateRecord,dashboard}= require('../controllers/financecontro');
+const express = require('express'); 
+const limiter = require('../middleware/ratelimitingmiddle');
+const financeRoute = express.Router();
+const authenciateToken = require('../middleware/authmiddleware');
+const isAdmin = require('../middleware/adminmiddle');
+financeRoute.use(limiter);
+financeRoute.post('/createrecords', authenciateToken, createRecord);
+financeRoute.get('/getrecords', authenciateToken, getRecords);
+financeRoute.put('/updaterecord/:id', authenciateToken, updateRecord);
+financeRoute.delete('/deleterecord/:id', authenciateToken,isAdmin, deleteRecord);
+financeRoute.get('/dashboard', authenciateToken, dashboard);
+module.exports = financeRoute;
