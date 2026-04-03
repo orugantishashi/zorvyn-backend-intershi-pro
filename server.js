@@ -4,7 +4,9 @@ const connectDB = require('./config/db');
 require("dotenv").config();
 const authroute = require('./routes/authroute');
 const financeRoute = require('./routes/financesRoute');
+
 app.use(express.json());
+
 
 app.get("/",(req,res)=>{
     res.send("Hello World");
@@ -22,7 +24,7 @@ async function start() {
     });
 }
 
+
 start().catch((error) => {
     console.error("Failed to start server:", error);
-    process.exit(1);
 });
