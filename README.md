@@ -223,6 +223,49 @@ GET /api/records/dashboard
 * Deployment (AWS / Render)
 
 ---
+## 📌 Assumptions
+
+- Users can only access their own data unless they are admin
+- Admin has full control over all data
+- Analyst has read-only access
+- All servers use the same MongoDB database
+- JWT is required for protected routes
+
+---
+## 📘 API Explanation
+
+### Register
+POST /api/auth/register  
+Body:
+{
+  "name": "User",
+  "email": "user@gmail.com",
+  "password": "123456"
+}
+
+### Login
+POST /api/auth/login  
+Returns JWT token
+
+### Create Record
+POST /api/records  
+Headers: Authorization: Bearer TOKEN  
+Body:
+{
+  "amount": 1000,
+  "typeofamount": "income",
+  "category": "salary",
+  "note":"salary"
+}
+
+---
+
+## ⚖️ Trade-offs
+
+- Used simple role-based access instead of complex permission systems
+- Did not implement refresh tokens for simplicity
+- No frontend included (backend-focused project)
+- Basic validation used instead of advanced schema validation
 
 ## 📌 Notes
 
